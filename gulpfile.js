@@ -84,7 +84,7 @@ const paths = {
      //plugins src
     pluginsCss: ['src/plugins/css/*.css'],
     plugins: ['src/plugins/*.css'],
-    css:['src/css/*.css','node_modules/flatpickr/dist/themes/light.css'],
+    css:['src/css/*.css','src/assets/flatpickr/dist/themes/light.css'],
     pluginsJs:[
         'node_modules/jquery/dist/jquery.min.js',
         'src/plugins/js/clipboard.min.js',

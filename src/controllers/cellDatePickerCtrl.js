@@ -1,7 +1,7 @@
 import menuButton from './menuButton';
 import formula from '../global/formula';
 import Store from '../store';
-import flatpickr from 'flatpickr'
+import flatpickr from '../assets/flatpickr/dist/flatpickr'
 import dayjs from "dayjs";
 import { update, datenum_local } from '../global/format';
 import { setCellValue, setCellFormat } from '../global/api';

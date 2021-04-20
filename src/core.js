@@ -35,8 +35,9 @@ import method from './global/method';
 
 import * as api from './global/api';
 
-import flatpickr from 'flatpickr'
-import Mandarin from 'flatpickr/dist/l10n/zh.js'
+import flatpickr from './assets/flatpickr/dist/flatpickr'
+import Mandarin from './assets/flatpickr/dist/l10n/zh.js'
+//import Mandarin from 'flatpickr/dist/l10n/zh.js'
 import { initListener } from './controllers/listener';
 
 let luckysheet = {};
@@ -142,7 +143,7 @@ luckysheet.create = function (setting) {
 
     // Store the currently used plugins for monitoring asynchronous loading
     Store.asyncLoad.push(...luckysheetConfigsetting.plugins);
-    
+
     // Register plugins
     initPlugins(extendsetting.plugins , extendsetting.data);
 
