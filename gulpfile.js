@@ -189,7 +189,7 @@ async function core() {
         file: 'dist/luckysheet.umd.js',
         format: 'umd',
         name: 'luckysheet',
-        sourcemap: true,
+        sourcemap: false,
         inlineDynamicImports:true,
 
     });
@@ -199,7 +199,7 @@ async function core() {
             file: 'dist/luckysheet.esm.js',
             format: 'esm',
             name: 'luckysheet',
-            sourcemap: true,
+            sourcemap: false,
             inlineDynamicImports:true,
         });
     }
