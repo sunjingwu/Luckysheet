@@ -743,8 +743,6 @@ function getCellTextInfo(cell , ctx, option){
                             });
                         }
 
-
-
                         splitIndex +=1;
 
                         i++;
@@ -992,7 +990,7 @@ function getCellTextInfo(cell , ctx, option){
                                 i = spaceOrTwoByte.index + 1;
 
                                 text_all_split[splitIndex].push({
-                                    content:spaceOrTwoByte.str,
+                                    content: preStr,//spaceOrTwoByte.str, 解决中英文混合下自动换行的问题
                                     style:fontset,
                                     width:spaceOrTwoByte.width,
                                     height:spaceOrTwoByte.height,
@@ -1066,13 +1064,10 @@ function getCellTextInfo(cell , ctx, option){
                         if((width+space_width)>cellWidth && text_all_split[splitIndex]!=null && i!= value.length){
                             // console.log(spaceOrTwoByte, i, anchor);
                             if(spaceOrTwoByte!=null && spaceOrTwoByte.index<i){
-
                                 anchor = spaceOrTwoByte.index;
-
                                 i = spaceOrTwoByte.index + 1;
-
                                 text_all_split[splitIndex].push({
-                                    content:spaceOrTwoByte.str,
+                                    content:preStr,//spaceOrTwoByte.str, 解决中英文混合下自动换行的问题
                                     style:fontset,
                                     width:spaceOrTwoByte.width,
                                     height:spaceOrTwoByte.height,
@@ -1087,9 +1082,6 @@ function getCellTextInfo(cell , ctx, option){
                                 splitIndex +=1;
 
                                 spaceOrTwoByte = null;
-
-
-
                             }
                             else{
 
@@ -1110,9 +1102,6 @@ function getCellTextInfo(cell , ctx, option){
                                 });
 
                                 // console.log(2);
-
-
-
                                 splitIndex +=1;
                             }
                         }
