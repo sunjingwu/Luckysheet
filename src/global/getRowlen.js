@@ -960,14 +960,13 @@ function getCellTextInfo(cell , ctx, option){
                     let textHeight = measureText.actualBoundingBoxAscent+measureText.actualBoundingBoxDescent;
 
                     let width = textWidth * Math.cos(rt*Math.PI/180) + textHeight * Math.sin(rt*Math.PI/180);//consider text box wdith and line height
-
                     let height = textWidth * Math.sin(rt*Math.PI/180) + textHeight * Math.cos(rt*Math.PI/180);//consider text box wdith and line height
                     let lastWord = str.substr(str.length-1,1);
                     if(lastWord==" " || checkWordByteLength(lastWord)==2){
                         if(preMeasureText!=null){
                             spaceOrTwoByte = {
                                 index:i,
-                                str:preStr,
+                                str:preStr + lastWord,// 解决中英文混合下自动换行的问题
                                 width:preTextWidth,
                                 height:preTextHeight,
                                 asc:preMeasureText.actualBoundingBoxAscent,
@@ -979,6 +978,7 @@ function getCellTextInfo(cell , ctx, option){
                     // textW_all += textW;
                     // console.log(str,anchor,i);
                     if(rt!=0){//rotate
+
                         // console.log("all",anchor, i , str);
                         if((height+space_height)>cellHeight && text_all_split[splitIndex]!=null && i!= value.length){
                             // console.log("cut",anchor, i , str);
@@ -990,7 +990,7 @@ function getCellTextInfo(cell , ctx, option){
                                 i = spaceOrTwoByte.index + 1;
 
                                 text_all_split[splitIndex].push({
-                                    content: preStr,//spaceOrTwoByte.str, 解决中英文混合下自动换行的问题
+                                    content: spaceOrTwoByte.str,
                                     style:fontset,
                                     width:spaceOrTwoByte.width,
                                     height:spaceOrTwoByte.height,
@@ -1005,11 +1005,7 @@ function getCellTextInfo(cell , ctx, option){
                                 // console.log(1,anchor,i,splitIndex , spaceOrTwoByte.str);
 
                                 splitIndex +=1;
-
                                 spaceOrTwoByte = null;
-
-
-
                             }
                             else{
                                 anchor = i-1;
@@ -1030,8 +1026,6 @@ function getCellTextInfo(cell , ctx, option){
                                 // console.log(2,anchor,i, splitIndex, preStr);
 
                                 splitIndex +=1;
-
-
                             }
                         }
                         else if(i== value.length){
@@ -1067,7 +1061,7 @@ function getCellTextInfo(cell , ctx, option){
                                 anchor = spaceOrTwoByte.index;
                                 i = spaceOrTwoByte.index + 1;
                                 text_all_split[splitIndex].push({
-                                    content:preStr,//spaceOrTwoByte.str, 解决中英文混合下自动换行的问题
+                                    content:spaceOrTwoByte.str,
                                     style:fontset,
                                     width:spaceOrTwoByte.width,
                                     height:spaceOrTwoByte.height,
@@ -1080,14 +1074,10 @@ function getCellTextInfo(cell , ctx, option){
                                 });
 
                                 splitIndex +=1;
-
                                 spaceOrTwoByte = null;
                             }
                             else{
-
-                                spaceOrTwoByte = null;
                                 anchor = i-1;
-
                                 text_all_split[splitIndex].push({
                                     content:preStr,
                                     style:fontset,
@@ -1101,8 +1091,8 @@ function getCellTextInfo(cell , ctx, option){
                                     fs:fontSize,
                                 });
 
-                                // console.log(2);
                                 splitIndex +=1;
+                                spaceOrTwoByte = null;
                             }
                         }
                         else if(i== value.length){
